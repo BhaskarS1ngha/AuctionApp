@@ -1,0 +1,67 @@
+{% extends "auction/header.html" %}
+
+{% block content %}
+
+
+    <div class='responsive-table'>
+        <table class = 'highlight '>
+            <thead>
+            <tr>
+                <th>Auction ID</th>
+                <th>Item Name</th>
+                <th>Starting Price</th>
+                <th>Highest Bid</th>
+                <th>Highest Bidder</th>
+                <th>Starting Time</th>
+                <th>Ending Time</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for auction in Auctions %}
+                <tr>
+                    <td>{{ auction.auctionId }}</td>
+                    <td>{{ auction.itemName }}</td>
+                    <td>Rs. {{ auction.startPrice }}</td>
+                    <td>{% if auction.highestBid != None %} Rs. {% endif %}{{ auction.highestBid }}</td>
+                    <td>{{ auction.getBidderName }}</td>
+                    <td>{{ auction.startTime }}</td>
+                    <td>{{ auction.endTime }}</td>
+                    <td>{% if auction.isActive %}Active {% else %} Complete{% endif %}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% block pagination %}
+        <div class="center-align">
+        <ul class="pagination">
+
+            <li class = "{% if Auctions.has_previous %}waves-effect{% else %}disabled{% endif %}">
+                <a href = "{% if Auctions.has_previous %}?page={{ Auctions.previous_page_number }}{% endif %}">
+                <i class="material-icons">chevron_left</i>
+                </a>
+            </li>
+
+            {% for page_number in Auctions.page_range %}
+                {% if page_number == Auctions.paginator.ELLIPSIS %}
+                    <li class="disabled"> {{page_number}} </li>
+                {% else %}
+                    <li class="{% if page_number == Auctions.number %}active{% else %}waves-effect{% endif %}">
+                        <a href="?page={{ page_number }}"> {{page_number}}</a></li>
+                {% endif %}
+            {% endfor %}
+        <li class = "{% if Auctions.has_next %}waves-effect{% else %}disabled{% endif %}">
+                <a href = "{% if Auctions.has_next %}?page={{ Auctions.next_page_number }}{% endif %}">
+                <i class="material-icons">chevron_right</i>
+                </a>
+            </li>
+        </ul>
+        </div>
+    {% endblock %}
+
+{% endblock %}
+
+
+

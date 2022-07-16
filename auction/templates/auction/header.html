@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!--{% load static %}-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified JavaScript for Materialize CSS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<title>Auctions</title>
+	<meta charset="utf-8" />
+</head>
+
+<body>
+<nav>
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="right hide-on-small-only">
+        <li><a href="/">Home</a></li>
+          {% if user.is_superuser %}
+              <li><a href="/auctionAdmin">Admin</a></li>
+              <li><a href="/logout">Logout</a></li>
+          {% else %}
+           <li><a href="/login">Login</a></li>
+          {% endif %}
+      </ul>
+    </div>
+  </nav>
+<div>
+{% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success'%}
+                <script>M.toast({html: "{{message}}", classes: 'green rounded', displayLength:2000});</script>
+            {% elif message.tags == 'info'%}
+                <script>M.toast({html: "{{message}}", classes: 'blue rounded', displayLength:2000});</script>
+            {% elif message.tags == 'warning'%}
+                <script>M.toast({html: "{{message}}", classes: 'orange rounded', displayLength:10000});</script>
+            {% elif message.tags == 'error'%}
+                <script>M.toast({html: "{{message}}", classes: 'red rounded', displayLength:10000});</script>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <div class="container center-block">
+	{% block content %}
+    {% endblock %}
+	</div>
+</div>
+
+
+</body>
+
+</html>
