@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'auction.apps.AuctionConfig',
-    'background_task',
 ]
 
 MIDDLEWARE = [
