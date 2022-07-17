@@ -20,7 +20,8 @@ For demo purposes, one more model - user has been used. The user model consist o
 
 The application has two views *"homepage"* at *""* and *"admin"* at *"auctionAdmin/"*. The *homepage* displays all the
 auctions that are currently ongoing and is available to all users. The *admin* page displays all the auctions regardless 
-of their status.
+of their status. The admin page is only available after logging in. The admin can log in with their superuser credentials. 
+For authenticating logins, django's built-in *Django authentication system* has been used.
 
 * *homepage* ![homepage](images/homapage.PNG)  
 * *admin* ![adminPanel](images/admin.PNG)  
@@ -35,9 +36,11 @@ ___
 `git clone https://github.com/BhaskarS1ngha/AuctionApp.git`  
 2. install requirements  
 `pip install -r requirements.txt`  
-3. start server  
+3. Create superuser (Admin)  
+   `python manage.py createsuperuser`
+4. start server  
 `python manage.py runserver`  
-4. schedule a cron job or windows task scheduler to execute the following command every minute.  
+5. schedule a cron job or windows task scheduler to execute the following command every minute.  
 `python manage.py update_status`
    
 ## Miscellaneous
