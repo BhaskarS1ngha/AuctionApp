@@ -28,18 +28,15 @@ class Auction(models.Model):
             return hb
 
 
-
-
 class user(models.Model):
     userID = models.UUIDField(primary_key=True)
     userName = models.CharField(max_length=100,null=False)
-
 
     def __str__(self):
         return self.userName
 
 
-class bid(models.Model):
-    bidID = models.AutoField(primary_key=True)
-    auctionID = models.IntegerField(null=False)
-    bidAmount = models.FloatField(null=False)
+# class bid(models.Model):
+#     bidID = models.AutoField(primary_key=True)
+#     auctionID = models.IntegerField(null=False)
+#     bidAmount = models.FloatField(null=False)

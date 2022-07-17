@@ -1,20 +1,27 @@
 from django.core.management.base import BaseCommand
 from auction.models import Auction, user
 from django.utils import timezone
+from django.core.management import call_command
 import datetime
 import random
 
-users = user.objects.all()
-nUsers = len(users)
+
 
 
 class Command(BaseCommand):
     help = 'creates 50 randomly generated auctions'
 
     def handle(self, *args, **options):
+        users = user.objects.all()
+        nUsers = len(users)
+        if nUsers<=0:
+            call_command('addUsers')
+            users = user.objects.all()
+            nUsers = len(users)
+
         for i in range(0,50):
             now = timezone.now()
-            endTime = now + datetime.timedelta(seconds=random.randint(0, 200))
+            endTime = now + datetime.timedelta(seconds=random.randint(0, 90))
             itemName = f'item {random.randint(100,500)}'
             startPrice = random.randint(1,10000)
             highestBid = startPrice+random.randint(1,1000)
