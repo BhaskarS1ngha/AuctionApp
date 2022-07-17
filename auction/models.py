@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
+
 class Auction(models.Model):
     auctionId = models.AutoField(primary_key=True)
     itemName = models.CharField(max_length=100)
@@ -34,9 +35,3 @@ class user(models.Model):
 
     def __str__(self):
         return self.userName
-
-
-# class bid(models.Model):
-#     bidID = models.AutoField(primary_key=True)
-#     auctionID = models.IntegerField(null=False)
-#     bidAmount = models.FloatField(null=False)
