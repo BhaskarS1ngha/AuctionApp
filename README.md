@@ -1,7 +1,7 @@
 # Auction WebApp
 ___
 The Auction WebApp is a web-application developed with the django framework. It displays the auctions stored in the database.
-Normal Users can view only the auctions that are ongoing, the admin can view all the auctions (ongoing and complete).  
+Normal Users can only view the auctions that are ongoing, the admin can view all the auctions (ongoing and complete).  
 
 ## Description
 ___
